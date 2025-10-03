@@ -1,6 +1,9 @@
 #include<iostream>
 #include"raylib.h"
-#include "button.hpp"
+
+
+#define RAYGUI_IMPLEMENTATION
+#include"raygui.h"
 
 #define MAX_INPUT_CHARS     9
 
@@ -8,6 +11,10 @@ int main()
 {
 	int width = 1020;
 	int hidth = 620;
+
+	bool showMessageBox = false;
+
+	bool showMessageBox2 = false;
 
 	const char te = '43';
 
@@ -31,9 +38,6 @@ int main()
 	int framesCounter = 0;
 	//----------------------------
 
-	Button add_Proizv_Button{ "img/button_add.png", {25, 340}, 0.45 };
-	Button add_Tochka_Button{ "img/button_add.png", {25, 440}, 0.45 };
-	Button exitButton{ "img/button_exit.png", {25, 540}, 0.65 };
 
 	Vector3 cubePosition = { 0.0f, 2.0f, 0.0f };
 
@@ -122,18 +126,10 @@ int main()
 
 		BeginDrawing();
 			ClearBackground(WHITE);
-	
 
 			
 
-			EndMode3D();
 
-			//-------------------Текст_в_3D--------------------------//
-			DrawText("0", (int)cubeScreenPosition0.x, (int)cubeScreenPosition0.y, 15, BLACK);
-			DrawText("X", (int)cubeScreenPositionX.x, (int)cubeScreenPositionX.y, 25, BLACK);
-			DrawText("Y", (int)cubeScreenPositionY.x, (int)cubeScreenPositionY.y, 25, BLACK);
-			DrawText("Z", (int)cubeScreenPositionZ.x, (int)cubeScreenPositionZ.y, 25, BLACK);
-			//--------------------------------------------------//
 
 			//-----MENU-------------
 			//DrawRectangle(10, 10, 240, 523, SKYBLUE);
@@ -151,12 +147,6 @@ int main()
 		DrawText("Point Coordinates", 20, 410, 20, BLACK);
 		//------------------------------------------------------------//
 		
-		//---------------Отрисовка_кнопок-----------------//
-		add_Proizv_Button.Draw();
-		add_Tochka_Button.Draw();
-		exitButton.Draw();
-		//------------------------------//
-		
 		//------------------------------//
 		DrawRectangleRec(textBox, LIGHTGRAY);
 		if (mouseOnText) DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, RED);
@@ -173,9 +163,33 @@ int main()
 					// Draw blinking underscore char
 				if (((framesCounter / 20) % 2) == 0) DrawText("_", (int)textBox.x + 8 + MeasureText(name, 40), (int)textBox.y + 12, 40, MAROON);
 			}
-			else DrawText("Press BACKSPACE to delete chars...", 230, 300, 20, GRAY);
+			else DrawText("Press BACKSPACE to delete chars...", 430, 100, 20, GRAY);
 		}
 		//-----------------------------------//
+
+		
+		//-------------Кнопки_Raygui----------------------//
+		if (GuiButton(Rectangle{ 24, 350, 130, 40 }, GuiIconText(ICON_FILE_PEER, "Show Message"))) showMessageBox = true;
+
+		if (showMessageBox)
+		{
+			int result = GuiMessageBox(Rectangle{ 310, 110, 250, 100 },
+				"Message Box", "Hi! This is a message!", "Nice;Cool");
+			if (result >= 0) showMessageBox = false;
+		}
+		//--------------------
+
+		if (GuiButton(Rectangle{ 24, 450, 130, 40 }, GuiIconText(ICON_FILE_PEER, "Show Message"))) showMessageBox2 = true;
+
+		if (showMessageBox2)
+		{
+			int result = GuiMessageBox(Rectangle{ 410, 210, 250, 100 },
+				"Message Box", "Hi! This is a message!", "Nice;Cool");
+
+			if (result >= 0) showMessageBox2 = false;
+		}
+		//-----------------------------------//
+
 
 		BeginMode3D(cam);
 	
@@ -183,29 +197,14 @@ int main()
 
 		DrawGrid(30, 2);
 
-		//----------------------Текст_Вывод-----------------------------//
-		if (add_Proizv_Button.isPressed(mousePosition, mousePressed))
-		{
-			std::cout << "Add Derivatives" << std::endl;
-		}
-		//-----------------//
+			EndMode3D();
 
-		if (add_Tochka_Button.isPressed(mousePosition, mousePressed))
-		{
-			std::cout << "Add Coordinates" << std::endl;
-		}
-		//-----------------//
-
-		if (exitButton.isPressed(mousePosition, mousePressed))
-		{
-			exit = true;
-		}
-		//------------------------------------------------------------//
-
-
-
-
-
+			//-------------------Текст_в_3D--------------------------//
+			DrawText("0", (int)cubeScreenPosition0.x, (int)cubeScreenPosition0.y, 15, BLACK);
+			DrawText("X", (int)cubeScreenPositionX.x, (int)cubeScreenPositionX.y, 25, BLACK);
+			DrawText("Y", (int)cubeScreenPositionY.x, (int)cubeScreenPositionY.y, 25, BLACK);
+			DrawText("Z", (int)cubeScreenPositionZ.x, (int)cubeScreenPositionZ.y, 25, BLACK);
+			//--------------------------------------------------//
 
 		EndDrawing();
 	}
