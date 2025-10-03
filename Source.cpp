@@ -5,12 +5,12 @@
 #define RAYGUI_IMPLEMENTATION
 #include"raygui.h"
 
-#define MAX_INPUT_CHARS     9
+#define MAX_INPUT_CHARS     20
 
 int main()
 {
-	int width = 1020;
-	int hidth = 620;
+	int width = 1720;
+	int hidth = 880;
 
 	bool showMessageBox = false;
 
@@ -32,7 +32,7 @@ int main()
 	char name[MAX_INPUT_CHARS + 1] = "\0";      // NOTE: One extra space required for null terminator char '\0'
 	int letterCount = 0;
 
-	Rectangle textBox = { width / 2.0f - 470, 50, 250, 50 };
+	Rectangle textBox = { width / 2.0f - 830, 50, 275, 50 };
 	bool mouseOnText = false;
 
 	int framesCounter = 0;
@@ -154,7 +154,9 @@ int main()
 
 		DrawText(name, (int)textBox.x + 5, (int)textBox.y + 8, 40, MAROON);
 
-		DrawText(TextFormat("INPUT CHARS: %i/%i", letterCount, MAX_INPUT_CHARS), 315, 250, 20, DARKGRAY);
+		DrawText(TextFormat(" %i/%i", letterCount, MAX_INPUT_CHARS), 50, 125, 20, DARKGRAY);
+
+		
 
 		if (mouseOnText)
 		{
@@ -167,23 +169,24 @@ int main()
 		}
 		//-----------------------------------//
 
+		GuiSetStyle(DEFAULT, TEXT_SIZE, 18);
 		
 		//-------------Êíîïêè_Raygui----------------------//
-		if (GuiButton(Rectangle{ 24, 350, 130, 40 }, GuiIconText(ICON_FILE_PEER, "Show Message"))) showMessageBox = true;
+		if (GuiButton(Rectangle{ 24, 350, 140, 40 }, GuiIconText(ICON_FILE_PEER, "Show Message"))) showMessageBox = true;
 
 		if (showMessageBox)
 		{
-			int result = GuiMessageBox(Rectangle{ 310, 110, 250, 100 },
+			int result = GuiMessageBox(Rectangle{ 310, 110, 275, 125 },
 				"Message Box", "Hi! This is a message!", "Nice;Cool");
 			if (result >= 0) showMessageBox = false;
 		}
 		//--------------------
 
-		if (GuiButton(Rectangle{ 24, 450, 130, 40 }, GuiIconText(ICON_FILE_PEER, "Show Message"))) showMessageBox2 = true;
+		if (GuiButton(Rectangle{ 24, 450, 140, 40 }, GuiIconText(ICON_FILE_PEER, "Show Message"))) showMessageBox2 = true;
 
 		if (showMessageBox2)
 		{
-			int result = GuiMessageBox(Rectangle{ 410, 210, 250, 100 },
+			int result = GuiMessageBox(Rectangle{ 410, 210, 275, 125 },
 				"Message Box", "Hi! This is a message!", "Nice;Cool");
 
 			if (result >= 0) showMessageBox2 = false;
