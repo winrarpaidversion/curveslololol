@@ -1,4 +1,4 @@
-п»ї#include<iostream>
+#include<iostream>
 #include"raylib.h"
 
 
@@ -47,12 +47,12 @@ int main()
 	Vector2 cubeScreenPositionY = { 0.0f, 10.0f };
 	Vector2 cubeScreenPositionZ = { 0.0f, 10.0f };
 
-	Ray ray = { 0 };
+	Ray ray = { 0 };                    
 	RayCollision collision = { 0 };
 
 	bool exit = false;
 
-	DisableCursor();
+	DisableCursor();    
 	SetTargetFPS(60);
 
 	while (WindowShouldClose() == false && exit == false)
@@ -96,7 +96,7 @@ int main()
 
 
 
-		//---------------Р’С‹С…РѕРґ\Р’С…РѕРґ_РІ_СЂРµР¶РёРј_РєР°РјРµСЂС‹--------------//
+		//---------------Выход\Вход_в_режим_камеры--------------//
 		if (IsCursorHidden()) UpdateCamera(&cam, CAMERA_FIRST_PERSON);
 
 		if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
@@ -119,34 +119,34 @@ int main()
 		cubeScreenPosition0 = GetWorldToScreen(Vector3{ 0.0f, 0.0f, cubePosition.z }, cam);
 		cubeScreenPositionX = GetWorldToScreen(Vector3{ 0.5f, 30.0f, cubePosition.z }, cam);
 		cubeScreenPositionZ = GetWorldToScreen(Vector3{ 30.0f,0.5f, cubePosition.z }, cam);
-		cubeScreenPositionY = GetWorldToScreen(Vector3{ 0.5f, 0.5f, 30.0f }, cam);
+		cubeScreenPositionY = GetWorldToScreen(Vector3{ 0.5f, 0.5f, 30.0f}, cam);
 
 		Vector2 mousePosition = GetMousePosition();
 		bool mousePressed = IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
 
 		BeginDrawing();
-		ClearBackground(WHITE);
+			ClearBackground(WHITE);
+
+			
 
 
 
-
-
-		//-----MENU-------------
-		//DrawRectangle(10, 10, 240, 523, SKYBLUE);
-		//DrawRectangleLines(10, 10, 240, 523, BLUE);
-
+			//-----MENU-------------
+			//DrawRectangle(10, 10, 240, 523, SKYBLUE);
+			//DrawRectangleLines(10, 10, 240, 523, BLUE);
+	
 
 		DrawRectangle(10, 10, 325, 520, SKYBLUE);
 		DrawRectangleLines(10, 10, 325, 520, BLUE);
 
-		//----------------------РўРµРєСЃС‚_РІ_Р Р°РјРєР°С…-----------------------------//
+		//----------------------Текст_в_Рамках-----------------------------//
 		DrawText("Zdes vvod", 20, 20, 20, BLACK);
 
 		DrawText("Coordinates of Derivatives", 20, 320, 20, BLACK);
 
 		DrawText("Point Coordinates", 20, 410, 20, BLACK);
 		//------------------------------------------------------------//
-
+		
 		//------------------------------//
 		DrawRectangleRec(textBox, LIGHTGRAY);
 		if (mouseOnText) DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, RED);
@@ -156,13 +156,13 @@ int main()
 
 		DrawText(TextFormat(" %i/%i", letterCount, MAX_INPUT_CHARS), 50, 125, 20, DARKGRAY);
 
-
+		
 
 		if (mouseOnText)
 		{
 			if (letterCount < MAX_INPUT_CHARS)
 			{
-				// Draw blinking underscore char
+					// Draw blinking underscore char
 				if (((framesCounter / 20) % 2) == 0) DrawText("_", (int)textBox.x + 8 + MeasureText(name, 40), (int)textBox.y + 12, 40, MAROON);
 			}
 			else DrawText("Press BACKSPACE to delete chars...", 430, 100, 20, GRAY);
@@ -170,8 +170,8 @@ int main()
 		//-----------------------------------//
 
 		GuiSetStyle(DEFAULT, TEXT_SIZE, 18);
-
-		//-------------РљРЅРѕРїРєРё_Raygui----------------------//
+		
+		//-------------Кнопки_Raygui----------------------//
 		if (GuiButton(Rectangle{ 24, 350, 140, 40 }, GuiIconText(ICON_FILE_PEER, "Show Message"))) showMessageBox = true;
 
 		if (showMessageBox)
@@ -195,25 +195,25 @@ int main()
 
 
 		BeginMode3D(cam);
-
+	
 		DrawLine3D({ 0.0f, 0.0f, 0.0f }, { 0.0f, 30.0f, 0.0f }, DARKGRAY);
 
 		DrawGrid(30, 2);
 
-		EndMode3D();
+			EndMode3D();
 
-		//-------------------РўРµРєСЃС‚_РІ_3D--------------------------//
-		DrawText("0", (int)cubeScreenPosition0.x, (int)cubeScreenPosition0.y, 15, BLACK);
-		DrawText("X", (int)cubeScreenPositionX.x, (int)cubeScreenPositionX.y, 25, BLACK);
-		DrawText("Y", (int)cubeScreenPositionY.x, (int)cubeScreenPositionY.y, 25, BLACK);
-		DrawText("Z", (int)cubeScreenPositionZ.x, (int)cubeScreenPositionZ.y, 25, BLACK);
-		//--------------------------------------------------//
+			//-------------------Текст_в_3D--------------------------//
+			DrawText("0", (int)cubeScreenPosition0.x, (int)cubeScreenPosition0.y, 15, BLACK);
+			DrawText("X", (int)cubeScreenPositionX.x, (int)cubeScreenPositionX.y, 25, BLACK);
+			DrawText("Y", (int)cubeScreenPositionY.x, (int)cubeScreenPositionY.y, 25, BLACK);
+			DrawText("Z", (int)cubeScreenPositionZ.x, (int)cubeScreenPositionZ.y, 25, BLACK);
+			//--------------------------------------------------//
 
 		EndDrawing();
 	}
 	CloseWindow();
-
-
+	
+	
 	return 0;
 
 }
