@@ -1,7 +1,6 @@
 #pragma once
 #include<vector>
-#include "Cube.h"
-#include "Ellips.h"
+#include"Curve.h"
 #include <memory>
 namespace containercurves 
 {

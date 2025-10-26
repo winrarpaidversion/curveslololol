@@ -4,21 +4,21 @@ class Helix : public Curve
 {
 public:
 
-	Helix(Vector3 center, double radius, double step, std::string name) : center{ center }, radius{ radius }, name{ name }, step{ step } {}
+	Helix(Vector3 center, float radius, float step, std::string name) : center{ center }, radius{ radius }, name{ name }, step{ step } {}
 
 	Vector3 center;
-	double radius;
-	double step;
+	float radius;
+	float step;
 	std::string name;
 
 
-	Vector3 getPoint(double t) override;
+	Vector3 getPoint(float t) override;
 
-	Vector3 getDerivative(double t) override;
+	Vector3 getDerivative(float t) override;
 
 	Vector3 getCenter();
-	double getRadius();
-	double getStep();
+	float getRadius();
+	float getStep();
 	std::string getName();
 
 };

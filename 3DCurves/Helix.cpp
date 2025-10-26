@@ -1,21 +1,21 @@
 #include "Helix.h"
 
-Vector3 Helix::getPoint(double t)
+Vector3 Helix::getPoint(float t)
 {
 	return {radius * std::cos(t), radius * std::sin(t), step * t};
 }
 
-Vector3 Helix::getDerivative(double t)
+Vector3 Helix::getDerivative(float t)
 {
 	return {-radius * std::sin(t), radius * std::cos(t), };
 }
 
-double Helix::getRadius()
+float Helix::getRadius()
 {
 	return radius;
 }
 
-double Helix::getStep()
+float Helix::getStep()
 {
 	return step;
 }

@@ -1,11 +1,11 @@
 #include "Circle.h"
 
-Vector3 Circle::getPoint(double t)
+Vector3 Circle::getPoint(float t)
 {
 	return { radius * std::cos(t), radius * std::sin(t), 0.0 };
 }
 
-Vector3 Circle::getDerivative(double t)
+Vector3 Circle::getDerivative(float t)
 {
 	return { -radius * std::sin(t), radius * std::cos(t), 0.0 };
 }
@@ -15,7 +15,7 @@ Vector3 Circle::getCenter()
 	return center;
 }
 
-double Circle::getRadius()
+float Circle::getRadius()
 {
 	return radius;
 }

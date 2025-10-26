@@ -103,8 +103,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\curveslololol\3DCurves;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,16 +128,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="ContainerCurves.cpp" />
     <ClCompile Include="Curve.cpp" />
     <ClCompile Include="Ellipse.cpp" />
     <ClCompile Include="Helix.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="RenderInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="ContainerCurves.h" />
     <ClInclude Include="Curve.h" />
     <ClInclude Include="Ellipse.h" />
     <ClInclude Include="Helix.h" />
+    <ClInclude Include="raygui.h" />
+    <ClInclude Include="RenderInterface.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\vcpkg-configuration.json" />
+    <None Include="..\vcpkg.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
