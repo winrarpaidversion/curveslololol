@@ -1,7 +1,7 @@
 #pragma once
 #include<cmath>
 #include<string>
-#include <raygui.h>
+#include <raylib.h>
 
 
 class Curve

@@ -13,9 +13,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="dd">
-      <UniqueIdentifier>{c7f7cd6b-f22f-4ca1-835b-0fa0a4e39f83}</UniqueIdentifier>
-    </Filter>
     <Filter Include="render">
       <UniqueIdentifier>{daba7940-bdef-443b-a33b-e3529f683638}</UniqueIdentifier>
     </Filter>
@@ -55,9 +52,6 @@
     </ClInclude>
     <ClInclude Include="Helix.h">
       <Filter>Curves</Filter>
-    </ClInclude>
-    <ClInclude Include="raygui.h">
-      <Filter>dd</Filter>
     </ClInclude>
     <ClInclude Include="RenderInterface.h">
       <Filter>render</Filter>

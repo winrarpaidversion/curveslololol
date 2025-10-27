@@ -14,14 +14,14 @@ int main()
 	GuiEnable();
 	GuiUnlock();
 	int width = 1720;
-	int hidth = 880;
+	int height = 880;
 	bool showMessageBox = false;
 	bool showMessageBox2 = false;
 	bool showMessageBox3 = false;
 	char* buffer;
 	buffer = (char*)calloc(1024, sizeof(char));
 
-	InitWindow(width, hidth, "MathInRaylib");
+	InitWindow(width, height, "MathInRaylib");
 	RayCollision collision = { 0 };
 	Camera3D cam = { 0 };
 	Vector3 cubePosition = { 0.0f, 2.0f, 0.0f };
