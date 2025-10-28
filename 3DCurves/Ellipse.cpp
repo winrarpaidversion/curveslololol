@@ -19,3 +19,13 @@ std::string Ellipse::getName()
 {
 	return name;
 }
+
+Color Ellipse::getColor()
+{
+	return color;
+}
+
+std::string Ellipse::getClass()
+{
+	return "Ellipse";
+}

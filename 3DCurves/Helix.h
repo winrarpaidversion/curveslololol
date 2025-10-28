@@ -10,7 +10,7 @@ public:
 	float radius;
 	float step;
 	std::string name;
-
+	Color color;
 
 	Vector3 getPoint(float t) override;
 
@@ -19,7 +19,8 @@ public:
 	Vector3 getCenter();
 	float getRadius();
 	float getStep();
-	std::string getName();
-
+	std::string getName() override;
+	Color getColor() override;
+	std::string getClass() override;
 };
 

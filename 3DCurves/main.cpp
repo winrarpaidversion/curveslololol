@@ -57,7 +57,7 @@ int main()
 
 
 		//-----------------Рамка_Меню--------------------//
-		renderinterface.DrawFrame();
+		
 
 		BeginMode3D(cam);
 		containercurves.DrawCurrentContainer();
