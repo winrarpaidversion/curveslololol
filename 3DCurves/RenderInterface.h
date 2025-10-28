@@ -1,7 +1,7 @@
 #pragma once
 
-#include "raylib.h"
-#include "raygui.h"
+#include <raylib.h>
+
 namespace RenderGui
 {
 	class RenderInterface

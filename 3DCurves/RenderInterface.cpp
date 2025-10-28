@@ -46,7 +46,7 @@ namespace RenderGui
 		DrawText("Search", 20, 20, 20, BLACK);
 		DrawText("Coordinates of Derivatives", 20, 320, 20, BLACK);
 		DrawText("Point Coordinates", 20, 410, 20, BLACK);
-		GuiSetStyle(DEFAULT, TEXT_SIZE, 16);
+		
 	}
 	void RenderInterface::Draws3DText()
 	{
