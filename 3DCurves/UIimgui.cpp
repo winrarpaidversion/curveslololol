@@ -1,19 +1,34 @@
 #include "UIimgui.h"
 void UIimgui::startUI()
 {
-	containercurves::ContainerCurves container;
+	
 	rlImGuiBegin();
 
-	bool open = true;
-	ImGui::ShowDemoWindow(&open);
+	static char elevenBytes[500] = {};
 
-	ImGui::SetNextWindowSize(ImVec2{ 500,500 });
-	if (ImGui::Begin("Hello"), &open)
+
+	ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_MenuBar;
+	static bool no_menu = true;
+	if (!no_menu)           window_flags |= ImGuiWindowFlags_MenuBar;
+	//	ImGui::ShowDemoWindow(&open);
+
+
+	ImGui::SetNextWindowSize(ImVec2{ 400,300 });
+	if (ImGui::Begin("Hello", nullptr, window_flags | no_menu))
 	{
-		ContainerRender(&container);
+
+		ImGui::InputText("Input", elevenBytes, sizeof(elevenBytes));
+		/*ImGui::InputText();*/
+		if (ImGui::Button("Chek", ImVec2{ 100,30 }))
+		{
+
+		}
+
 	}
 	ImGui::End();
+
 }
+
 void UIimgui::endUI()
 {
 	rlImGuiEnd();

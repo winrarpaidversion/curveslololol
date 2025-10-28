@@ -46,9 +46,18 @@ int main()
 
 		BeginDrawing();
 		
-		ui.startUI();
+		
 		ClearBackground(WHITE);
+
+
+		ui.startUI();
+		
+
+
+
+
 		//-----------------Рамка_Меню--------------------//
+		renderinterface.DrawFrame();
 
 		BeginMode3D(cam);
 		containercurves.DrawCurrentContainer();
