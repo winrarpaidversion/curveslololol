@@ -3,20 +3,20 @@
 class Circle : public Curve
 {
 public:
-	Circle(Vector3 center, double radius, std::string name) : center{ center }, radius{ radius }, name{ name } {}
+	Circle(Vector3 center, float radius, std::string name) : center{ center }, radius{ radius }, name{ name } {}
 
 
 	Vector3 center;
-	double radius;
+	float radius;
 	std::string name;
 
-	Vector3 getPoint(double t) override;
+	Vector3 getPoint(float t) override;
 
-	Vector3 getDerivative(double t) override;
+	Vector3 getDerivative(float t) override;
 
 
 	Vector3 getCenter();
 
-	double getRadius();
+	float getRadius();
 	std::string getName();
 };
