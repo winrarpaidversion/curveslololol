@@ -1,5 +1,4 @@
 ﻿#include "RenderInterface.h"
-#include "ContainerCurves.h"
 #include <iostream>
 #include "UIimgui.h"
 
@@ -49,16 +48,7 @@ int main()
 		
 		ui.startUI();
 		ClearBackground(WHITE);
-
-
-
-		
-
-
-
-
 		//-----------------Рамка_Меню--------------------//
-		renderinterface.DrawFrame();
 
 		BeginMode3D(cam);
 		containercurves.DrawCurrentContainer();

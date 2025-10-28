@@ -39,15 +39,6 @@ namespace RenderGui
 		DrawGrid(30, 2.0f);
 
 	}
-	void RenderInterface::DrawFrame()
-	{
-		DrawRectangle(10, 10, 325, 520, GRAY);
-		DrawRectangleLines(10, 10, 325, 520, DARKGRAY);
-		DrawText("Search", 20, 20, 20, BLACK);
-		DrawText("Coordinates of Derivatives", 20, 320, 20, BLACK);
-		DrawText("Point Coordinates", 20, 410, 20, BLACK);
-		
-	}
 	void RenderInterface::Draws3DText()
 	{
 		DrawText("0", (int)cubeScreenPosition0.x, (int)cubeScreenPosition0.y, 15, BLACK);
