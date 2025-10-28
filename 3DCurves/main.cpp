@@ -1,12 +1,7 @@
 ﻿#include "RenderInterface.h"
 #include "ContainerCurves.h"
 #include <iostream>
-#include "imgui.h"
-#include "rlImGui.h"
-
-
-
-
+#include "UIimgui.h"
 
 int main()
 {
@@ -27,12 +22,15 @@ int main()
 
 	containercurves::ContainerCurves containercurves;
 	RenderGui::RenderInterface renderinterface;
+	UIimgui ui;
 
 	bool exit = false;
 	bool secret = true;
 
 	Vector2 mousePosition = GetMousePosition();
 	bool mousePressed = IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
+
+	rlImGuiSetup(true);
 
 	DisableCursor();
 	SetTargetFPS(60);
@@ -48,7 +46,16 @@ int main()
 		//-------------------------------------------------------//
 
 		BeginDrawing();
+		
+		ui.startUI();
 		ClearBackground(WHITE);
+
+
+
+		
+
+
+
 
 		//-----------------Рамка_Меню--------------------//
 		renderinterface.DrawFrame();
@@ -60,10 +67,12 @@ int main()
 		EndMode3D();
 		renderinterface.Draws3DText();
 
+		
+		ui.endUI();
 		EndDrawing();
-
+		
 	}
-
+	
 	CloseWindow();
 
 	return 0;

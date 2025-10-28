@@ -57,6 +57,12 @@
     <ClCompile Include="imgui\imgui_widgets.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
+    <ClCompile Include="UIimgui.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\rlImGui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h">
@@ -96,6 +102,15 @@
       <Filter>imgui</Filter>
     </ClInclude>
     <ClInclude Include="imgui\imgui_impl_raylib.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="UIimgui.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\rlImGui.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\rlImGuiColors.h">
       <Filter>imgui</Filter>
     </ClInclude>
   </ItemGroup>
