@@ -6,13 +6,14 @@
 class UIimgui
 {
 public:
-
+	
 	void startUI();
 	void endUI();
-	void ContainerRender(containercurves::ContainerCurves* reg);
+	void ContainerRender(containercurves::ContainerCurves& reg);
 private:
-	
+	static char elevenBytes[500];
 	bool check = true;
+
 	
 };
 
