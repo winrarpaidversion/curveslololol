@@ -24,3 +24,13 @@ std::string Helix::getName()
 {
 	return name;
 }
+
+Color Helix::getColor()
+{
+	return color;
+}
+
+std::string Helix::getClass()
+{
+	return "Helix";
+}

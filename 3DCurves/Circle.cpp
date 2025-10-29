@@ -24,3 +24,13 @@ std::string Circle::getName()
 {
 	return name;
 }
+
+Color Circle::getColor()
+{
+	return color;
+}
+
+std::string Circle::getClass()
+{
+	return "Circle";
+}
