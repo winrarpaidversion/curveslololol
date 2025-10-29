@@ -3,6 +3,8 @@
 #include "rlImGui.h"
 #include "ContainerCurves.h"
 #include "vector"
+#include <iostream>
+
 class UIimgui
 {
 public:
