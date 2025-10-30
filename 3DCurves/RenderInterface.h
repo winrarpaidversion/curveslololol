@@ -30,8 +30,8 @@ namespace RenderGui
 		void Draw3DLine();
 		void DrawFrame();
 
-		void DrawCurve(Curve& curve, int segments = 100);
-		void DrawAllCurves(std::vector<std::shared_ptr<Curve>>& curves);
+	
+		void DrawAllCurves(containercurves::ContainerCurves& container);
 		//void DrawSearch();
 	
 

@@ -40,21 +40,22 @@ namespace RenderGui
 		DrawGrid(30, 2.0f);
 
 	}
-	void RenderInterface::DrawCurve(Curve& curve, int segments)
+	
+	void RenderInterface::DrawAllCurves(containercurves::ContainerCurves& container)
 	{
-		Vector3 prev = curve.getPoint(0);
-		for (int i = 0; i <= segments; i++)
+		const auto& allPoints = container.getPoints();
+		const auto& curves = container.getContainer();
+
+		for(int i = 0; i < curves.size(); i++)
 		{
-			float t = (2 * PI * 3) * i / segments;
-			Vector3 curr = curve.getPoint(t);
-			DrawLine3D({ prev.x, prev.y, prev.z }, { curr.x, curr.y, curr.z }, curve.getColor());
-		}
-	}
-	void RenderInterface::DrawAllCurves(std::vector<std::shared_ptr<Curve>>& curves)
-	{
-		for (std::shared_ptr<Curve>& c : curves)
-		{
-			DrawCurve(*c);
+			const auto& curvePoints = allPoints[i];
+			const auto& color = curves[i]->getColor();
+			if (curvePoints.size() < 2) continue;
+
+			for (int j = 0; j < curvePoints.size() - 1; j++)
+			{
+				DrawLine3D(curvePoints[j], curvePoints[j + 1], color);
+			}
 		}
 	}
 	void RenderInterface::Draws3DText()

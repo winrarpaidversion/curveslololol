@@ -26,6 +26,8 @@ int main()
 
 	containercurves::ContainerCurves containercurves;
 	containercurves.initializeContainers();
+	containercurves.findCircles();
+	containercurves.updatePoints();
 	RenderGui::RenderInterface renderinterface;
 	UIimgui ui{ &containercurves };
 	
@@ -64,7 +66,8 @@ int main()
 		BeginMode3D(cam);
 	
 		renderinterface.Draw3DLine();
-
+	
+		renderinterface.DrawAllCurves(containercurves);
 
 		EndMode3D();
 		renderinterface.Draws3DText();

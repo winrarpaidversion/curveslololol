@@ -25,6 +25,9 @@ public:
 	void navButtons();
 	void generateRandomCurve();
 	void inputBoxes();
+	void showInfo();
+	void showInfoCircles();
+	char randomChar();
 
 	containercurves::ContainerCurves* reg;
 	float InputX;
@@ -37,13 +40,13 @@ public:
 	float angleX;
 	float angleY;
 	float angleZ;
-	
+	float customT;
 	std::string name;
-
+	static inline const char* items[] = { "Circle", "Ellipse", "Helix" };
 private:
 	static char elevenBytes[500];
 	bool check = true;
-	int item_selected_idx;
+	static int item_selected_idx;
 	int item_highlighted_idx;
 };
 

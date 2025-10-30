@@ -1,4 +1,4 @@
-#include "UIimgui.h"
+﻿#include "UIimgui.h"
 void StyleColorsSpectrum() {
 	ImGuiStyle& style = ImGui::GetStyle();
 
@@ -43,21 +43,17 @@ void StyleColorsSpectrum() {
 	style.Colors[ImGuiCol_TextSelectedBg] = ImVec4(0.00f, 1.00f, 1.00f, 0.22f);
 
 }
+int UIimgui::item_selected_idx = 0;
 
 void UIimgui::startUI()
 {
 	StyleColorsSpectrum();
-	const char* items[] = { "Circle", "Ellipse", "Helix" };
+	
 	static bool item_highlight = false;
 	item_highlighted_idx = -1;
-	item_selected_idx = 0;
+	
 	ImGuiIO& io = ImGui::GetIO();
 	io.Fonts->AddFontFromFileTTF("Font/arialmt.ttf", 14.0f);
-
-	int randValue = GetRandomValue(-8, 5);
-	int randValue2;
-	unsigned int framesCounter = 0;
-
 
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 	
@@ -105,12 +101,13 @@ void UIimgui::startUI()
 		if (ImGui::Button("Add", ImVec2{ 90,25 }))
 		{
 			name = Nameelement;
-			Color color{ col1[0] * 255 + 0.5, col1[1] * 255 + 0.5, col1[2] * 255 + 0.5 };
+			Color color{ col1[0] * 255 + 0.5, col1[1] * 255 + 0.5, col1[2] * 255 + 0.5, 255 };
 			
 			switch (item_selected_idx)
 			{
 			case 0:
 				reg->AddCurve(std::make_shared<Circle>(Vector3{ InputX, InputY, InputZ }, InputRadius, name, color, angleX, angleY, angleZ));
+
 				break;
 			case 1:
 				reg->AddCurve(std::make_shared<Ellipse>(Vector3{ InputX, InputY, InputZ }, InputRadius, InputA, InputB, name, color, angleX, angleY, angleZ));
@@ -123,17 +120,29 @@ void UIimgui::startUI()
 		ImGui::SameLine();
 		if (ImGui::Button("Delete", ImVec2{ 90,25 }))
 		{
+			reg->container.erase(reg->container.begin() + reg->CurrentLevel);
+
+			if (reg->CurrentLevel >= reg->container.size())
+			{
+				if (!reg->container.empty())
+					reg->CurrentLevel = reg->container.size() - 1;
+				else
+					reg->CurrentLevel = 0;
+			}
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("Random", ImVec2{ 90,25 }))
 		{	
 			generateRandomCurve();
 		}
-	
+
 		navButtons();
 
 		curveListBox();
 		
+		showInfo();
+
+		showInfoCircles();
 	}
 	ImGui::PopFont();
 }
@@ -146,8 +155,6 @@ void UIimgui::endUI()
 }
 void UIimgui::curveListBox()
 {
-	static int index =0;
-
 	if (ImGui::BeginListBox("All curves"))
 	{
 		if (!reg->container.empty())
@@ -217,7 +224,7 @@ void UIimgui::generateRandomCurve()
 		std::cout << num << std::endl;
 	}
 	Color color = { r,g,b,255 };
-
+	int curveType = GetRandomValue(0,2);
 
 }
 
@@ -255,4 +262,82 @@ void UIimgui::inputBoxes()
 	ImGui::InputTextMultiline(":Name", Nameelement, sizeof(Nameelement), ImVec2{ 200,20 });
 }
 
+void UIimgui::showInfo()
+{
+	if (!reg->container.empty())
+	{
+		auto& currentCurve = reg->container[reg->CurrentLevel];
+
+		ImGui::Spacing();
+		ImGui::Separator();
+		ImGui::Spacing();
+
+		ImGui::Text("Curve information:");
+
+		ImGui::Text("Name: %s", currentCurve->getName().c_str());
+		ImGui::Text("Type: %s", currentCurve->getClass().c_str());
+
+		ImGui::Spacing();
+		ImGui::Separator();
+		ImGui::Spacing();
+
+		ImGui::Text("Parameter input:");
+		ImGui::SetNextItemWidth(200);
+		if (ImGui::InputFloat("t parameter", &customT, 0.1, 1.0))
+		{
+
+		}
+		float radT = customT * DEG2RAD;
+		Vector3 p = currentCurve->getPoint(radT);
+		Vector3 d = currentCurve->getDerivative(radT);
+
+		ImGui::Text("Results for t = %.3f", radT);
+		ImGui::Text("Point: (%.5f, %.5f, %.5f)", p.x, p.y, p.z);
+		ImGui::Text("Derivative: (%.5f, %.5f, %.5f)", d.x, d.y, d.z);
+	}
+}
+
+void UIimgui::showInfoCircles()
+{
+	float t = PI/4;
+
+	if (reg->circleContainer.empty())
+	{
+		ImGui::Spacing();
+		ImGui::Separator();
+		ImGui::Spacing();
+		ImGui::Text("No Circle objects found in the array.");
+		return;
+	}
+
+	ImGui::Spacing();
+	ImGui::Separator();
+	ImGui::Spacing();
+	ImGui::Text("ALL CIRCLES (t = PI/4)");
+	ImGui::Spacing();
+	ImGui::Text("Total Circle objects: %zu", reg->circleContainer.size());
+	ImGui::Spacing();
+
+	for (const auto& curve : reg->circleContainer)
+	{
+		ImGui::Spacing();
+		ImGui::Separator();
+		ImGui::Spacing();
+
+		ImGui::Text("Name: %s", curve->getName().c_str());
+		
+		Vector3 p = curve->getPoint(t);
+		Vector3 d = curve->getDerivative(t);
+
+		ImGui::Text("Point at PI/4: (%.5f, %.5f, %.5f)", p.x, p.y, p.z);
+		ImGui::Text("Derivative at PI/4: (%.5f, %.5f, %.5f)", d.x, d.y, d.z);
+	}
+}
+
+char UIimgui::randomChar()
+{
+	int random = GetRandomValue(0, 26);
+
+	return 'A' + random;
+}
 
