@@ -20,8 +20,9 @@ int main()
 	Ray ray = { 0 };
 
 	containercurves::ContainerCurves containercurves;
+	containercurves.initializeContainers();
 	RenderGui::RenderInterface renderinterface;
-	UIimgui ui;
+	UIimgui ui{&containercurves};
 
 	bool exit = false;
 	bool secret = true;
@@ -37,7 +38,7 @@ int main()
 	while (WindowShouldClose() == false && exit == false)
 	{
 
-		containercurves.initializeContainers();
+		
 		renderinterface.calculatePosition(cam, cubePosition);
 
 		//---------------Выход\Вход_в_режим_камеры--------------//
@@ -48,15 +49,15 @@ int main()
 		
 		
 		ClearBackground(WHITE);
-
+		
 
 		ui.startUI();
-
+		
 		//-----------------Рамка_Меню--------------------//
 
 
 		BeginMode3D(cam);
-		containercurves.DrawCurrentContainer();
+		//containercurves.DrawCurrentContainer();
 		renderinterface.Draw3DLine();
 
 		EndMode3D();

@@ -5,13 +5,24 @@
 #include "vector"
 #include <iostream>
 
+
+
+
 class UIimgui
 {
 public:
-	
+	UIimgui(containercurves::ContainerCurves* reg) : reg{ reg } {};
+
 	void startUI();
 	void endUI();
-	void ContainerRender(containercurves::ContainerCurves& reg);
+	
+	
+	
+	void curveListBox();
+	void navButtons();
+
+
+	containercurves::ContainerCurves* reg;
 private:
 	static char elevenBytes[500];
 	bool check = true;

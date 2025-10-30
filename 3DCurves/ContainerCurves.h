@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "Curve.h"
+#include "Circle.h"
 #include <memory>
 namespace containercurves 
 {

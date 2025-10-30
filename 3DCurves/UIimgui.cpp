@@ -100,7 +100,7 @@ void UIimgui::startUI()
 		}
 		if (ImGui::Button("Add", ImVec2{ 100,30 }))
 		{
-			// TODO!!!!
+			
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("Random", ImVec2{ 100,30 }))
@@ -108,57 +108,52 @@ void UIimgui::startUI()
 			// TODO!!!!
 		}
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
-
+		navButtons();
+		curveListBox();
 	}
-	ImGui::End();
+	
 
 
 }
 
 void UIimgui::endUI()
 {
+	ImGui::End();
 	rlImGuiEnd();
+	
 }
-void UIimgui::ContainerRender(containercurves::ContainerCurves& reg)
+void UIimgui::curveListBox()
 {
+	if (ImGui::BeginListBox("All curves"))
+	{
+		if (!reg->container.empty())
+		{
+			for (int i = 0; i < reg->container.size(); i++)
+			{
+				const bool InSelect = (reg->CurrentLevel == i);
+				if (ImGui::Selectable(reg->container[i]->getName().c_str(), &InSelect))
+				{
+					reg->CurrentLevel = i;
+				}
+			}
+		}
+		else {
+			ImGui::Text("NO CURVES");
+		}
+	}
+	ImGui::EndListBox();
+}
 
-	const char* NameItem[10];
+void UIimgui::navButtons()
+{
 	if (ImGui::Button("Prev container"))
 	{
 		check = true;
-		reg.PrevCurve();
+		reg->PrevCurve();
 	}
 	if (ImGui::Button("Next container"))
 	{
 		check = true;
-		reg.NextCurve();
+		reg->NextCurve();
 	}
-
-
-	/*if (ImGui::BeginListBox("ContainerView"))
-	{
-		for (int i = 0; i < reg.container.size(); i++)
-		{
-			
-			NameItem[i] = reg.container[i]->getName();
-			const bool InSelect = (reg.CurrentLevel == i);
-			if(ImGui::Selectable(NameItem, &InSelect))
-			{
-				reg.CurrentLevel = i;
-
-			}
-		}
-	
-	}
-	ImGui::EndListBox();*/
-	//ImGui::BeginListBox("ContainerView", ImVec2{300,300});
-	//for (int i = 0; i < reg->container.size(); i++)
-	//{
-	//	const bool inSelect = (reg->CurrentLevel == i);
-	//	if(ImGui::Selectable("label",reg->container[i], inSelect))
-	//	{
-	//		reg->CurrentLevel = i;
-	//	}
-	//}
-	ImGui::End();
 }

@@ -3,10 +3,7 @@ namespace containercurves
 {
 	void ContainerCurves::initializeContainers()
 	{
-		
-		//container.push_back(std::make_shared<Cube>(1.0f, 1.0f, 1.0f, RED));
-		//container.push_back(std::make_shared<Ellips>(10.0f, 10.0f, 10.0f,10.0f,10.0f, RED));
-		//container.push_back(std::make_shared<Helix>(0, 0, 0));
+		container.push_back(std::make_shared<Circle>(Vector3{ 1,1,1 }, 25, "TestName"));
 	}
 	void ContainerCurves::NextCurve()
 	{
