@@ -82,11 +82,17 @@ void UIimgui::startUI()
 		ImGui::InputFloat(":X", &InputX);
 		ImGui::InputFloat(":Y", &InputY);
 		ImGui::InputFloat(":Z", &InputZ);
-		ImGui::InputFloat(":A", &InputA);
-		ImGui::InputFloat(":B", &InputB);
-		ImGui::InputFloat(":Step", &InputStep);
 		ImGui::InputFloat(":Radius", &InputRadius);
 		ImGui::InputTextMultiline(":Name", Nameelement, sizeof(Nameelement), ImVec2{ 200,20 });
+		if (item_highlighted_idx == 1)
+		{
+			ImGui::InputFloat(":A", &InputA);
+			ImGui::InputFloat(":B", &InputB);
+		}
+		else if (item_highlighted_idx == 2)
+		{
+			ImGui::InputFloat(":Step", &InputStep);
+		}
 		if (ImGui::ColorEdit3("Color", col1))
 		{
 			//Тут брать цвет и передавать в аддкривых хуёв
@@ -113,7 +119,13 @@ void UIimgui::startUI()
 	
 		if (ImGui::Button("Add", ImVec2{ 90,25 }))
 		{
-			//reg->AddCurve(saveX, saveY, saveZ);
+			switch (item_highlighted_idx)
+			{
+			case 0:
+				/*reg->AddCurve(InputX, InputY, InputZ, InputRadius, InputRadius, 0, InputRadius, 0, name, WHITE);*/
+			break;
+			};
+			
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("Delete", ImVec2{ 90,25 }))

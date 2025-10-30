@@ -25,5 +25,8 @@ public:
 	std::string getName() override;
 	Color getColor() override;
 	std::string getClass() override;
-};
 
+	Vector3 rotateX(Vector3& v, float angle);
+	Vector3 rotateY(Vector3& v, float angle);
+	Vector3 rotateZ(Vector3& v, float angle);
+};
