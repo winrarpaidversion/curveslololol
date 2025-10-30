@@ -2,11 +2,11 @@
 
 Vector3 Circle::getPoint(float t)
 {
-	Vector3 p{
-		radius * std::cos(t),
-		radius * std::sin(t),
+	Vector3 p{ 
+		radius * std::cos(t), 
+		radius * std::sin(t), 
 		0.0 };
-
+	
 	p = rotateX(p, angleX); p = rotateY(p, angleY); p = rotateZ(p, angleZ);
 
 	p.x += center.x;
@@ -18,13 +18,13 @@ Vector3 Circle::getPoint(float t)
 
 Vector3 Circle::getDerivative(float t)
 {
-	Vector3 d{
-		-radius * std::sin(t),
-		radius * std::cos(t),
+	Vector3 d { 
+		-radius * std::sin(t), 
+		radius * std::cos(t), 
 		0.0 };
 
 	d = rotateX(d, angleX); d = rotateY(d, angleY); d = rotateZ(d, angleZ);
-
+	
 	return d;
 }
 
@@ -57,8 +57,8 @@ Vector3 Circle::rotateX(Vector3& v, float angle)
 {
 	float cosA = std::cos(angle);
 	float sinA = std::sin(angle);
-	return {
-		v.x,
+	return { 
+		v.x, 
 		v.y * cosA - v.z * sinA,
 		v.y * sinA + v.z * cosA };
 }
@@ -67,9 +67,9 @@ Vector3 Circle::rotateY(Vector3& v, float angle)
 {
 	float cosA = std::cos(angle);
 	float sinA = std::sin(angle);
-	return {
-		v.x * cosA + v.z * sinA,
-		v.y,
+	return { 
+		v.x * cosA + v.z * sinA, 
+		v.y, 
 		-v.x * sinA + v.z * cosA };
 }
 
@@ -77,7 +77,7 @@ Vector3 Circle::rotateZ(Vector3& v, float angle)
 {
 	float cosA = std::cos(angle);
 	float sinA = std::sin(angle);
-	return {
+	return { 
 		v.x * cosA - v.y * sinA,
 		v.x * sinA + v.y * cosA,
 		v.z };

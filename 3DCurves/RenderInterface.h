@@ -2,6 +2,7 @@
 #include "imgui.h"
 #include "rlImGui.h"
 #include <raylib.h>
+#include "ContainerCurves.h"
 
 namespace RenderGui
 {
@@ -28,6 +29,9 @@ namespace RenderGui
 		void Draws3DText();
 		void Draw3DLine();
 		void DrawFrame();
+
+		void DrawCurve(Curve& curve, int segments = 100);
+		void DrawAllCurves(std::vector<std::shared_ptr<Curve>>& curves);
 		//void DrawSearch();
 	
 

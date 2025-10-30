@@ -3,10 +3,10 @@
 class Circle : public Curve
 {
 public:
-	Circle(Vector3 center, float radius, std::string name, Color color, float angleX = 0, float angleY = 0, float angleZ = 0) : center{ center }, radius{ radius },
-		name{ name }, color{ color },
+	Circle(Vector3 center, float radius, std::string name, Color color, float angleX = 0, float angleY = 0, float angleZ = 0) : center{ center }, radius{ radius }, 
+		name{ name }, color{ color }, 
 		angleX{ angleX }, angleY{ angleY }, angleZ{ angleZ } {}
-
+	
 	Vector3 center;
 	float radius;
 	std::string name;

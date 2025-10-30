@@ -65,6 +65,7 @@ int main()
 	
 		renderinterface.Draw3DLine();
 
+
 		EndMode3D();
 		renderinterface.Draws3DText();
 

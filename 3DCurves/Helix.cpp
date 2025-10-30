@@ -2,7 +2,7 @@
 
 Vector3 Helix::getPoint(float t)
 {
-	Vector3 p{ radius * std::cos(t), radius * std::sin(t), step * t };
+	Vector3 p {radius * std::cos(t), radius * std::sin(t), step * t};
 
 	p = rotateX(p, angleX); p = rotateY(p, angleY); p = rotateZ(p, angleZ);
 
@@ -15,7 +15,7 @@ Vector3 Helix::getPoint(float t)
 
 Vector3 Helix::getDerivative(float t)
 {
-	Vector3 d{ -radius * std::sin(t), radius * std::cos(t), step };
+	Vector3 d {-radius * std::sin(t), radius * std::cos(t), step};
 
 	d = rotateX(d, angleX); d = rotateY(d, angleY); d = rotateZ(d, angleZ);
 

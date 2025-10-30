@@ -1,15 +1,14 @@
 #pragma once
 #include <vector>
 #include "Circle.h"
+#include "Ellipse.h"
+#include "Helix.h"
 #include <memory>
-#include"Ellipse.h"
-#include"Helix.h"
 namespace containercurves 
 {
 	class ContainerCurves
 	{
 	public:
-
 		std::vector<std::shared_ptr<Curve>> container;
 		int CurrentLevel = 0;
 
@@ -17,10 +16,8 @@ namespace containercurves
 		void NextCurve();
 		void PrevCurve();
 		void DrawCurrentContainer();
+		std::vector<std::shared_ptr<Curve>> getContainer();
 		void AddCurve(std::shared_ptr<Curve> curve);
-
-		
-		
 	};
 };
 

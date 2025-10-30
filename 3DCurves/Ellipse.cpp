@@ -2,7 +2,7 @@
 
 Vector3 Ellipse::getPoint(float t)
 {
-	Vector3 p{ a * std::cos(t), b * std::sin(t), 0.0 };
+	Vector3 p {a * std::cos(t), b * std::sin(t), 0.0};
 
 	p = rotateX(p, angleX); p = rotateY(p, angleY); p = rotateZ(p, angleZ);
 
@@ -15,7 +15,7 @@ Vector3 Ellipse::getPoint(float t)
 
 Vector3 Ellipse::getDerivative(float t)
 {
-	Vector3 d{ -a * std::sin(t), b * std::cos(t), 0.0 };
+	Vector3 d {-a * std::sin(t), b * std::cos(t), 0.0};
 
 	d = rotateX(d, angleX); d = rotateY(d, angleY); d = rotateZ(d, angleZ);
 
@@ -41,28 +41,29 @@ std::string Ellipse::getClass()
 {
 	return "Ellipse";
 }
+// hmmmm
 Vector3 Ellipse::rotateX(Vector3& v, float angle) {
 	float cosA = std::cos(angle);
 	float sinA = std::sin(angle);
-	return {
-		v.x,
-		v.y * cosA - v.z * sinA,
+    return { 
+		v.x, 
+		v.y * cosA - v.z * sinA, 
 		v.y * sinA + v.z * cosA };
 }
 
 Vector3 Ellipse::rotateY(Vector3& v, float angle) {
-	float cosA = std::cos(angle);
+	float cosA = std::cos(angle); 
 	float sinA = std::sin(angle);
-	return {
+    return { 
 		v.x * cosA + v.z * sinA,
-		v.y,
+		v.y, 
 		-v.x * sinA + v.z * cosA };
 }
 
 Vector3 Ellipse::rotateZ(Vector3& v, float angle) {
 	float cosA = std::cos(angle);
 	float sinA = std::sin(angle);
-	return {
+    return { 
 		v.x * cosA - v.y * sinA,
 		v.x * sinA + v.y * cosA,
 		v.z };
