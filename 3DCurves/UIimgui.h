@@ -6,25 +6,35 @@
 #include <iostream>
 
 
-
-
+//static char Xelement[500] = {};
+//static char Yelement[500] = {};
+//static char Zelement[500] = {};
+//static char Aelement[500] = {};
+//static char Belement[500] = {};
+//static char Stepelement[500] = {};
+//static char Radiuselement[500] = {};
+static char Nameelement[500] = {};
+static float col1[3] = { 1,1,1 };
 class UIimgui
 {
 public:
 	UIimgui(containercurves::ContainerCurves* reg) : reg{ reg } {};
-	
-
 	void startUI();
 	void endUI();
-
 	void curveListBox();
 	void navButtons();
-
 	void generateRandomCurve();
-
-
-	containercurves::ContainerCurves* reg;
 	
+	containercurves::ContainerCurves* reg;
+	float InputX;
+	float InputY;
+	float InputZ;
+	float InputA;
+	float InputB;
+	float InputStep;
+	float InputRadius;
+	std::string name;
+
 private:
 	static char elevenBytes[500];
 	bool check = true;

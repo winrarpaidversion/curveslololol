@@ -64,10 +64,7 @@ void UIimgui::startUI()
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 	
 	rlImGuiBegin();
-	
-	static char elevenBytes1[500] = { };
-	static char elevenBytes2[500] = { };
-	static char elevenBytes3[500] = { };
+
 
 	ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoTitleBar;
 
@@ -75,22 +72,25 @@ void UIimgui::startUI()
 
 	ImGui::SetNextWindowSize(ImVec2{ 425,880 });
 	ImGui::SetNextWindowPos(ImVec2{ 0,0 });
-	static float col1[3] = { 1,1,1 };
+
 
 	ImGui::PushFont(io.Fonts->Fonts[1]);
 
 
 	if (ImGui::Begin("Hello", nullptr, window_flags ))
 	{
-
-		ImGui::InputTextMultiline(":X", elevenBytes1, sizeof(elevenBytes1), ImVec2{ 100,18 }); 
-		ImGui::SameLine();
-		ImGui::InputTextMultiline(":Y", elevenBytes2, sizeof(elevenBytes2), ImVec2{ 100,18 }); 
-		ImGui::SameLine();
-		ImGui::InputTextMultiline(":Z", elevenBytes3, sizeof(elevenBytes3), ImVec2{ 100,18 });
-		
-		ImGui::ColorEdit3("Color", col1);
-		ImGui::Text("");
+		ImGui::InputFloat(":X", &InputX);
+		ImGui::InputFloat(":Y", &InputY);
+		ImGui::InputFloat(":Z", &InputZ);
+		ImGui::InputFloat(":A", &InputA);
+		ImGui::InputFloat(":B", &InputB);
+		ImGui::InputFloat(":Step", &InputStep);
+		ImGui::InputFloat(":Radius", &InputRadius);
+		ImGui::InputTextMultiline(":Name", Nameelement, sizeof(Nameelement), ImVec2{ 200,20 });
+		if (ImGui::ColorEdit3("Color", col1))
+		{
+			//Тут брать цвет и передавать в аддкривых хуёв
+		}
 		/*ImGui::InputText();*/
 		
 		if (ImGui::BeginListBox("List Boxes"))
@@ -110,11 +110,10 @@ void UIimgui::startUI()
 			}
 			ImGui::EndListBox();
 		}
-		ImGui::Text("");
+	
 		if (ImGui::Button("Add", ImVec2{ 90,25 }))
 		{
-			
-
+			//reg->AddCurve(saveX, saveY, saveZ);
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("Delete", ImVec2{ 90,25 }))
@@ -127,14 +126,12 @@ void UIimgui::startUI()
 		{	
 			generateRandomCurve();
 		}
-		ImGui::Text("");
+	
 		navButtons();
 
 		curveListBox();
 	}
 	ImGui::PopFont();
-
-
 }
 
 void UIimgui::endUI()
@@ -145,6 +142,7 @@ void UIimgui::endUI()
 }
 void UIimgui::curveListBox()
 {
+	static int index =0;
 
 	if (ImGui::BeginListBox("All curves"))
 	{
@@ -153,9 +151,13 @@ void UIimgui::curveListBox()
 			for (int i = 0; i < reg->container.size(); i++)
 			{
 				const bool InSelect = (reg->CurrentLevel == i);
-				if (ImGui::Selectable(reg->container[i]->getName().c_str(), &InSelect))
+				if (ImGui::Selectable(reg->container[i]->getName().c_str(), InSelect))
 				{
 					reg->CurrentLevel = i;
+				}
+				if (InSelect)
+				{
+					ImGui::SetItemDefaultFocus();
 				}
 			}
 		}
