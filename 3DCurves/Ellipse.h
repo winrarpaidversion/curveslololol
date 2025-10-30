@@ -3,12 +3,14 @@
 class Ellipse : public Curve
 {
 public:
-	Ellipse(Vector3 center, float radius, float a, float b, std::string name) : center{ center }, radius{ radius }, name{ name }, a{ a }, b{ b } {}
+	Ellipse(Vector3 center, float radius, float a, float b, std::string name, float angleX = 0, float angleY = 0, float angleZ = 0) : center{ center }, radius{ radius }, name{ name }, 
+		a{ a }, b{ b }, angleX{angleX}, angleY(angleY), angleZ(angleZ) {}
 
 	Vector3 center;
 	float radius;
 	float a;
 	float b;
+	float angleX, angleY, angleZ;
 	std::string name;
 	Color color;
 
@@ -21,5 +23,9 @@ public:
 	std::string getName() override;
 	Color getColor() override;
 	std::string getClass() override;
+
+	Vector3 rotateX(Vector3& v, float angle);
+	Vector3 rotateY(Vector3& v, float angle);
+	Vector3 rotateZ(Vector3& v, float angle);
 };
 
