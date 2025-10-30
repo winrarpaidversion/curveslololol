@@ -79,20 +79,37 @@ void UIimgui::startUI()
 
 	if (ImGui::Begin("Hello", nullptr, window_flags ))
 	{
+		ImGui::SetNextItemWidth(50);
 		ImGui::InputFloat(":X", &InputX);
+		ImGui::SetNextItemWidth(50);
 		ImGui::InputFloat(":Y", &InputY);
+		ImGui::SetNextItemWidth(50);
 		ImGui::InputFloat(":Z", &InputZ);
+		ImGui::SetNextItemWidth(50);
 		ImGui::InputFloat(":Radius", &InputRadius);
-		ImGui::InputTextMultiline(":Name", Nameelement, sizeof(Nameelement), ImVec2{ 200,20 });
-		if (item_highlighted_idx == 1)
+		ImGui::SetNextItemWidth(50);
+		ImGui::InputFloat(":angle-X", &angleX);
+		ImGui::SetNextItemWidth(50);
+		ImGui::InputFloat(":angle-Y", &angleY);
+		ImGui::SetNextItemWidth(50);
+		ImGui::InputFloat(":angle-Z", &angleZ);
+
+		if (item_selected_idx == 1)
 		{
+			ImGui::SetNextItemWidth(50);
 			ImGui::InputFloat(":A", &InputA);
+			ImGui::SetNextItemWidth(50);
 			ImGui::InputFloat(":B", &InputB);
+			ImGui::SetNextItemWidth(50);
 		}
-		else if (item_highlighted_idx == 2)
+		else if (item_selected_idx == 2)
 		{
+			ImGui::SetNextItemWidth(50);
 			ImGui::InputFloat(":Step", &InputStep);
+
 		}
+		ImGui::InputTextMultiline(":Name", Nameelement, sizeof(Nameelement), ImVec2{ 200,20 });
+	
 		if (ImGui::ColorEdit3("Color", col1))
 		{
 			//Тут брать цвет и передавать в аддкривых хуёв
@@ -119,19 +136,25 @@ void UIimgui::startUI()
 	
 		if (ImGui::Button("Add", ImVec2{ 90,25 }))
 		{
-			switch (item_highlighted_idx)
-			{
-			case 0:
-				/*reg->AddCurve(InputX, InputY, InputZ, InputRadius, InputRadius, 0, InputRadius, 0, name, WHITE);*/
-			break;
-			};
+			
+				switch (item_selected_idx)
+				{
+				case 0:
+					reg->AddCurve(std::make_shared<Circle>(Vector3{ InputX, InputY, InputZ }, InputRadius, name, BLACK, angleX, angleY, angleZ));
+					break;
+				case 1:
+					reg->AddCurve(std::make_shared<Ellipse>(Vector3{ InputX, InputY, InputZ }, InputRadius, InputA, InputB, name, BLACK, angleX, angleY, angleZ));
+					break;
+				case 2:
+					reg->AddCurve(std::make_shared<Helix>(Vector3{ InputX, InputY, InputZ }, InputRadius, InputStep, name, BLACK, angleX, angleY, angleZ));
+					break;
+				
+			}
 			
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("Delete", ImVec2{ 90,25 }))
 		{
-		
-
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("Random", ImVec2{ 90,25 }))
@@ -142,6 +165,7 @@ void UIimgui::startUI()
 		navButtons();
 
 		curveListBox();
+		
 	}
 	ImGui::PopFont();
 }

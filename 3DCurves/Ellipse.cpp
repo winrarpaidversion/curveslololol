@@ -41,7 +41,6 @@ std::string Ellipse::getClass()
 {
 	return "Ellipse";
 }
-// hmmmm
 Vector3 Ellipse::rotateX(Vector3& v, float angle) {
 	float cosA = std::cos(angle);
 	float sinA = std::sin(angle);

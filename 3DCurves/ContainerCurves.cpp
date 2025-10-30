@@ -3,29 +3,41 @@ namespace containercurves
 {
 	void ContainerCurves::initializeContainers()
 	{
-		container.push_back(std::make_shared<Ellipse>(Vector3{ 1,1,1 }, 25, 20, 10, "Ellipse", WHITE));
-		container.push_back(std::make_shared<Circle>(Vector3{ 1,1,1 }, 25, "Circle"));
+		container.push_back(std::make_shared<Ellipse>(Vector3{ 1,1,1 }, 25, 20, 10, "Ellipse", WHITE, 25, 45, 50));
+		container.push_back(std::make_shared<Circle>(Vector3{ 1,1,1 }, 25, "Circle", WHITE, 25, 45, 50));
+		container.push_back(std::make_shared<Helix>(Vector3{ 1,1,1 }, 25, 5, "Helix", WHITE, 25, 45, 50));
 	}
-	//void ContainerCurves::AddCurve(float x, float y, float z,float a,float step, float b, float corner, float radius, std::string name, Color color)
+
+	/*void ContainerCurves::AddCurveCircle(Vector3(float x, float y, float z), float radius, std::string name, Color color, float angleX, float angleY, float angleZ)
+	{
+		container.push_back(std::make_shared<Circle>(Vector3{ x,y,z }, 25, "Circle", WHITE, 25, 45, 50));
+	}
+	void ContainerCurves::AddCurveEllipse(std::shared_ptr<Curve> curve)
+	{
+		container.push_back(curve);
+	}
+	void ContainerCurves::AddCurveHelix(std::shared_ptr<Curve> curve)
+	{
+		container.push_back(curve);
+	}*/
+	void ContainerCurves::AddCurve(std::shared_ptr<Curve> curve)
+	{
+		container.push_back(curve);
+	}
+	//void ContainerCurves::AddCurve(std::shared_ptr<Circle> circle)
 	//{
-	//	for (const auto& curve : container)
-	//	{
-	//		auto circle = std::make_shared<Circle>(x, y,z, corner, name);
-	//		auto ellipse = std::make_shared<Ellipse>(Vector3{x,y,z},radius,a, b, name, color);
-	//		auto helix = std::make_shared<Helix>(Vector3{x,y,z}, radius, step, name, color);
-	//		if (circle)
-	//		{
-	//			container.push_back(circle);
-	//		}
-	//		if (ellipse)
-	//		{
-	//			container.push_back(ellipse);
-	//		}
-	//		if (helix)
-	//		{
-	//			container.push_back(helix);
-	//		}
-	//	}
+	//	container.push_back(std::make_shared<Circle>());
+
+	//}
+	//void ContainerCurves::AddCurve(std::shared_ptr<Ellipse> ellipse)
+	//{
+	//	container.push_back(std::make_shared<Ellipse>());
+
+	//}
+	//void ContainerCurves::AddCurve(std::shared_ptr<Helix> helix)
+	//{
+	//	container.push_back(std::make_shared<Helix>());
+
 	//}
 	void ContainerCurves::NextCurve()
 	{

@@ -33,6 +33,9 @@ public:
 	float InputB;
 	float InputStep;
 	float InputRadius;
+	float angleX;
+	float angleY;
+	float angleZ;
 	std::string name;
 
 private:
