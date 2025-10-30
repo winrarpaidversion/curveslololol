@@ -42,7 +42,7 @@ std::string Ellipse::getClass()
 	return "Ellipse";
 }
 // hmmmm
-Vector3 rotateX(Vector3& v, float angle) {
+Vector3 Ellipse::rotateX(Vector3& v, float angle) {
 	float cosA = std::cos(angle);
 	float sinA = std::sin(angle);
     return { 
@@ -51,7 +51,7 @@ Vector3 rotateX(Vector3& v, float angle) {
 		v.y * sinA + v.z * cosA };
 }
 
-Vector3 rotateY(Vector3& v, float angle) {
+Vector3 Ellipse::rotateY(Vector3& v, float angle) {
 	float cosA = std::cos(angle); 
 	float sinA = std::sin(angle);
     return { 
@@ -60,7 +60,7 @@ Vector3 rotateY(Vector3& v, float angle) {
 		-v.x * sinA + v.z * cosA };
 }
 
-Vector3 rotateZ(Vector3& v, float angle) {
+Vector3 Ellipse::rotateZ(Vector3& v, float angle) {
 	float cosA = std::cos(angle);
 	float sinA = std::sin(angle);
     return { 
