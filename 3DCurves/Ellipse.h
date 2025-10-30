@@ -20,7 +20,7 @@ public:
 	Vector3 getDerivative(float t) override;
 
 	Vector3 getCenter();
-	float getRadius();
+	float getRadius() override;
 	std::string getName() override;
 	Color getColor() override;
 	std::string getClass() override;

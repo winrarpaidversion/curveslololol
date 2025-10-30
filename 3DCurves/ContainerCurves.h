@@ -4,7 +4,7 @@
 #include "Ellipse.h"
 #include "Helix.h"
 #include <memory>
-#include <iostream>
+#include <algorithm>
 namespace containercurves 
 {
 	class ContainerCurves
@@ -24,7 +24,9 @@ namespace containercurves
 		const std::vector<std::vector<Vector3>>& getPoints();
 		void AddCurve(std::shared_ptr<Curve> curve);
 		void updatePoints();
-
+		
+		void sortCircleContainer();
+		float sumCircles();
 
 		void findCircles();
 	};

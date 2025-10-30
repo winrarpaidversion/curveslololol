@@ -13,6 +13,6 @@ public:
 	virtual std::string getName() = 0;
 	virtual Color getColor() = 0;
 	virtual std::string getClass() = 0;
-
+	virtual float getRadius() = 0;
 };
 

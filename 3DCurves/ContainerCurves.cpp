@@ -16,6 +16,7 @@ namespace containercurves
 		container.push_back(curve);
 		updatePoints();
 		findCircles();
+		sortCircleContainer();
 	}
 	void ContainerCurves::updatePoints()
 	{
@@ -35,8 +36,23 @@ namespace containercurves
 			}
 
 			points.push_back(curvePoints);
-			std::cout << "Container size: " << container.size() << " Points: " << points.size() << "\n";
 		}
+	}
+	void ContainerCurves::sortCircleContainer()
+	{
+		std::sort(circleContainer.begin(), circleContainer.end(), [](const std::shared_ptr<Curve>& a, const std::shared_ptr<Curve>& b) 
+		{
+			return a->getRadius() < b->getRadius();
+		});
+	}
+	float ContainerCurves::sumCircles()
+	{
+		float sum = 0;
+		for (const auto& circle : circleContainer)
+		{
+			sum += circle->getRadius();
+		}
+		return sum;
 	}
 	void ContainerCurves::findCircles()
 	{

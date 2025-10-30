@@ -291,15 +291,20 @@ void UIimgui::showInfo()
 		Vector3 p = currentCurve->getPoint(radT);
 		Vector3 d = currentCurve->getDerivative(radT);
 
+		Vector3 pT = currentCurve->getPoint(t);
+		Vector3 dT = currentCurve->getDerivative(t);
 		ImGui::Text("Results for t = %.3f", radT);
 		ImGui::Text("Point: (%.5f, %.5f, %.5f)", p.x, p.y, p.z);
 		ImGui::Text("Derivative: (%.5f, %.5f, %.5f)", d.x, d.y, d.z);
+		ImGui::Spacing();
+		ImGui::Text("Point at PI/4: (%.5f, %.5f, %.5f)", pT.x, pT.y, pT.z);
+		ImGui::Text("Derivative at PI/4: (%.5f, %.5f, %.5f)", dT.x, dT.y, dT.z);
 	}
 }
 
 void UIimgui::showInfoCircles()
 {
-	float t = PI/4;
+	
 
 	if (reg->circleContainer.empty())
 	{
@@ -317,7 +322,8 @@ void UIimgui::showInfoCircles()
 	ImGui::Spacing();
 	ImGui::Text("Total Circle objects: %zu", reg->circleContainer.size());
 	ImGui::Spacing();
-
+	ImGui::Text("Sum: (%.3f)", reg->sumCircles());
+	ImGui::Spacing();
 	for (const auto& curve : reg->circleContainer)
 	{
 		ImGui::Spacing();
@@ -331,6 +337,8 @@ void UIimgui::showInfoCircles()
 
 		ImGui::Text("Point at PI/4: (%.5f, %.5f, %.5f)", p.x, p.y, p.z);
 		ImGui::Text("Derivative at PI/4: (%.5f, %.5f, %.5f)", d.x, d.y, d.z);
+		ImGui::Text("Radius: (%.5f)", curve->getRadius());
+		
 	}
 }
 

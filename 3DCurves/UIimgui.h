@@ -41,6 +41,7 @@ public:
 	float angleY;
 	float angleZ;
 	float customT;
+	float t = PI / 4;
 	std::string name;
 	static inline const char* items[] = { "Circle", "Ellipse", "Helix" };
 private:
