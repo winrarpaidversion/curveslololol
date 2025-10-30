@@ -24,7 +24,8 @@ public:
 	void curveListBox();
 	void navButtons();
 	void generateRandomCurve();
-	
+	void inputBoxes();
+
 	containercurves::ContainerCurves* reg;
 	float InputX;
 	float InputY;
@@ -36,12 +37,13 @@ public:
 	float angleX;
 	float angleY;
 	float angleZ;
+	
 	std::string name;
 
 private:
 	static char elevenBytes[500];
 	bool check = true;
-
-	
+	int item_selected_idx;
+	int item_highlighted_idx;
 };
 
