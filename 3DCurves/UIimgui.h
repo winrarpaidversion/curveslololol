@@ -12,17 +12,19 @@ class UIimgui
 {
 public:
 	UIimgui(containercurves::ContainerCurves* reg) : reg{ reg } {};
+	
 
 	void startUI();
 	void endUI();
-	
-	
-	
+
 	void curveListBox();
 	void navButtons();
 
+	void generateRandomCurve();
+
 
 	containercurves::ContainerCurves* reg;
+	
 private:
 	static char elevenBytes[500];
 	bool check = true;

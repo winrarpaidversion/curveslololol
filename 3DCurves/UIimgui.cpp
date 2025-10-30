@@ -1,6 +1,7 @@
 #include "UIimgui.h"
 void StyleColorsSpectrum() {
 	ImGuiStyle& style = ImGui::GetStyle();
+
 	style.Alpha = 1.0;
 	style.WindowRounding = 3;
 	style.GrabRounding = 1;
@@ -42,34 +43,44 @@ void StyleColorsSpectrum() {
 	style.Colors[ImGuiCol_TextSelectedBg] = ImVec4(0.00f, 1.00f, 1.00f, 0.22f);
 
 }
+
 void UIimgui::startUI()
 {
+	Camera3D cam = { 0 };
+
 	StyleColorsSpectrum();
 	const char* items[] = { "Circle", "Ellipse", "Helix" };
 	static bool item_highlight = false;
 	int item_highlighted_idx = -1;
 	static int item_selected_idx = 0;
+	ImGuiIO& io = ImGui::GetIO();
+	io.Fonts->AddFontFromFileTTF("Font/arialmt.ttf", 14.0f);
+
+	int randValue = GetRandomValue(-8, 5);
+	int randValue2;
+	unsigned int framesCounter = 0;
+
 
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	
 	rlImGuiBegin();
+	
+	static char elevenBytes1[500] = { };
+	static char elevenBytes2[500] = { };
+	static char elevenBytes3[500] = { };
 
-	static char elevenBytes1[500] = {};
-	static char elevenBytes2[500] = {};
-	static char elevenBytes3[500] = {};
+	ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoTitleBar;
 
-	ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_MenuBar;
-	static bool no_menu = true;
-	if (!no_menu)
-		window_flags |= ImGuiWindowFlags_MenuBar;
 	//	ImGui::ShowDemoWindow(&open);
 
 	ImGui::SetNextWindowSize(ImVec2{ 425,880 });
 	ImGui::SetNextWindowPos(ImVec2{ 0,0 });
 	static float col1[3] = { 1,1,1 };
 
+	ImGui::PushFont(io.Fonts->Fonts[1]);
 
-	if (ImGui::Begin("Hello", nullptr, window_flags | no_menu))
+
+	if (ImGui::Begin("Hello", nullptr, window_flags ))
 	{
 
 		ImGui::InputTextMultiline(":X", elevenBytes1, sizeof(elevenBytes1), ImVec2{ 100,18 }); 
@@ -77,8 +88,9 @@ void UIimgui::startUI()
 		ImGui::InputTextMultiline(":Y", elevenBytes2, sizeof(elevenBytes2), ImVec2{ 100,18 }); 
 		ImGui::SameLine();
 		ImGui::InputTextMultiline(":Z", elevenBytes3, sizeof(elevenBytes3), ImVec2{ 100,18 });
-
+		
 		ImGui::ColorEdit3("Color", col1);
+		ImGui::Text("");
 		/*ImGui::InputText();*/
 		
 		if (ImGui::BeginListBox("List Boxes"))
@@ -98,20 +110,29 @@ void UIimgui::startUI()
 			}
 			ImGui::EndListBox();
 		}
-		if (ImGui::Button("Add", ImVec2{ 100,30 }))
+		ImGui::Text("");
+		if (ImGui::Button("Add", ImVec2{ 90,25 }))
 		{
 			
+
 		}
 		ImGui::SameLine();
-		if (ImGui::Button("Random", ImVec2{ 100,30 }))
+		if (ImGui::Button("Delete", ImVec2{ 90,25 }))
 		{
-			// TODO!!!!
+		
+
 		}
-		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
+		ImGui::SameLine();
+		if (ImGui::Button("Random", ImVec2{ 90,25 }))
+		{	
+			generateRandomCurve();
+		}
+		ImGui::Text("");
 		navButtons();
+
 		curveListBox();
 	}
-	
+	ImGui::PopFont();
 
 
 }
@@ -124,6 +145,7 @@ void UIimgui::endUI()
 }
 void UIimgui::curveListBox()
 {
+
 	if (ImGui::BeginListBox("All curves"))
 	{
 		if (!reg->container.empty())
@@ -146,14 +168,51 @@ void UIimgui::curveListBox()
 
 void UIimgui::navButtons()
 {
+
 	if (ImGui::Button("Prev container"))
 	{
 		check = true;
 		reg->PrevCurve();
 	}
+
+	ImGui::SameLine();
 	if (ImGui::Button("Next container"))
 	{
 		check = true;
 		reg->NextCurve();
 	}
+	ImGui::Text("");
 }
+
+void UIimgui::generateRandomCurve()
+{
+	int coords[3];
+	float angles[3];
+	unsigned int r, g, b;
+
+	for (int i = 0; i < 3; i++)
+	{
+		coords[i] = GetRandomValue(0, 100);
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		angles[i] = GetRandomValue(0, 100);
+	}
+	r = GetRandomValue(0, 256);
+	g = GetRandomValue(0, 256);
+	b = GetRandomValue(0, 256);
+	for (int num : coords)
+	{
+		std::cout << num << std::endl;
+	}
+	std::cout << std::endl;
+	for (int num : angles)
+	{
+		std::cout << num << std::endl;
+	}
+	Color color = { r,g,b,255 };
+
+
+}
+
+

@@ -2,6 +2,7 @@
 
 namespace RenderGui
 {
+
 	void RenderInterface::DrawExitMouse(Camera& cam, RayCollision& collision, Ray& ray)
 	{
 

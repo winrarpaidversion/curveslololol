@@ -2,13 +2,18 @@
 #include <iostream>
 #include "UIimgui.h"
 
+
 int main()
 {
-	
+
 	int width = 1720;
 	int height = 880;
 
+
 	InitWindow(width, height, "MathInRaylib");
+	Image icon = LoadImage("icon.png");
+	SetWindowIcon(icon);
+
 	RayCollision collision = { 0 };
 	Camera3D cam = { 0 };
 	Vector3 cubePosition = { 0.0f, 2.0f, 0.0f };
@@ -22,8 +27,8 @@ int main()
 	containercurves::ContainerCurves containercurves;
 	containercurves.initializeContainers();
 	RenderGui::RenderInterface renderinterface;
-	UIimgui ui{&containercurves};
-
+	UIimgui ui{ &containercurves };
+	
 	bool exit = false;
 	bool secret = true;
 
@@ -57,7 +62,7 @@ int main()
 
 
 		BeginMode3D(cam);
-		//containercurves.DrawCurrentContainer();
+	
 		renderinterface.Draw3DLine();
 
 		EndMode3D();
@@ -68,7 +73,7 @@ int main()
 		EndDrawing();
 		
 	}
-	
+	UnloadImage(icon);
 	CloseWindow();
 
 	return 0;

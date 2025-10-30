@@ -1,5 +1,6 @@
 #pragma once
-
+#include "imgui.h"
+#include "rlImGui.h"
 #include <raylib.h>
 
 namespace RenderGui
