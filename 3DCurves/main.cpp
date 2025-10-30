@@ -32,16 +32,6 @@ int main()
 	bool exit = false;
 	bool secret = true;
 
-	Circle circle{ Vector3{10,20, 0}, 50, "My Circle" ,BLACK, 45};
-	std::vector<Vector3> points;
-	int segments = 100;
-	for (int i = 0; i <= segments; i++)
-	{
-		float t = 2 * PI * i / segments;
-		auto p = circle.getPoint(t);
-		points.push_back(Vector3{ p.x, p.y, p.z });
-	}
-
 	Vector2 mousePosition = GetMousePosition();
 	bool mousePressed = IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
 
@@ -75,10 +65,6 @@ int main()
 	
 		renderinterface.Draw3DLine();
 
-		for (int i = 0; i < points.size() - 1; i++)
-		{
-			DrawLine3D(points[i], points[i + 1], circle.getColor());
-		}
 
 		EndMode3D();
 		renderinterface.Draws3DText();

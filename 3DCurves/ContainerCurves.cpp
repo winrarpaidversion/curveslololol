@@ -3,7 +3,9 @@ namespace containercurves
 {
 	void ContainerCurves::initializeContainers()
 	{
-		
+		container.push_back(std::make_shared<Circle>(Vector3{0,0,0}, 10, "mY CIRCLE", BLACK)); 
+		container.push_back(std::make_shared<Circle>(Vector3{ 0,0,0 }, 10, "mY CIRCLE2", BLACK));
+		container.push_back(std::make_shared<Circle>(Vector3{ 0,0,0 }, 10, "mY CIRCL3", BLACK));
 	}
 	void ContainerCurves::NextCurve()
 	{
@@ -27,6 +29,10 @@ namespace containercurves
 			CurrentLevel = container.size() - 1;
 		};
 
+	}
+	std::vector<std::shared_ptr<Curve>> ContainerCurves::getContainer()
+	{
+		return container;
 	}
 	/*void ContainerCurves::DrawCurrentContainer()
 	{

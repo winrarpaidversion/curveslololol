@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include "Circle.h"
+#include "Ellipse.h"
+#include "Helix.h"
 #include <memory>
 namespace containercurves 
 {
@@ -14,7 +16,7 @@ namespace containercurves
 		void PrevCurve();
 		void DrawCurrentContainer();
 
-		
+		std::vector<std::shared_ptr<Curve>> getContainer();
 	};
 };
 
