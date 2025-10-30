@@ -4,11 +4,14 @@ class Helix : public Curve
 {
 public:
 
-	Helix(Vector3 center, float radius, float step, std::string name) : center{ center }, radius{ radius }, name{ name }, step{ step } {}
+	Helix(Vector3 center, float radius, float step, std::string name, Color color ,float angleX = 0, float angleY = 0, float angleZ = 0) : center{ center }, radius{ radius }, name{ name }, step{ step },
+		angleX{ angleX }, angleY{ angleY }, angleZ{ angleZ }, color{ color } {
+	}
 
 	Vector3 center;
 	float radius;
 	float step;
+	float angleX, angleY, angleZ;
 	std::string name;
 	Color color;
 
@@ -22,5 +25,9 @@ public:
 	std::string getName() override;
 	Color getColor() override;
 	std::string getClass() override;
+
+	Vector3 rotateX(Vector3& v, float angle);
+	Vector3 rotateY(Vector3& v, float angle);
+	Vector3 rotateZ(Vector3& v, float angle);
 };
 

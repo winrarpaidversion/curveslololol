@@ -3,7 +3,7 @@ namespace containercurves
 {
 	void ContainerCurves::initializeContainers()
 	{
-		container.push_back(std::make_shared<Circle>(Vector3{ 1,1,1 }, 25, "TestName"));
+		
 	}
 	void ContainerCurves::NextCurve()
 	{
